@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <div class="well col-md-12 text-center">
+        <h1>It Started With This...</h1>
+        <img class="responsive" src="{% static 'img/original.png' %}">
+    </div>
+
+    <h1>Top Obamacare Stories</h1>
+    {% for quote in top_quotes %}
+        <div class="col-md-4">
+            {% include "quote/inline.html" with quote=quote %}
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+            <div class="clearfix"></div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

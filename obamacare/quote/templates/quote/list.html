@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{% block list_title %}List Title{% endblock %}</h1>
+    <div class="col-md-12">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&laquo;</a></li>
+            {% endif %}
+
+            {% for page in paginator.page_range %}
+                <li class="{% if page == page_obj.number %}active{% endif %}"><a href="?page={{page}}">{{ page }}</a></li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% for object in page_obj.object_list %}
+        <div class="col-md-4">
+            {% include "quote/inline.html" with quote=object %}
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+            <div class="clearfix"></div>
+        {% endif %}
+    {% endfor %}
+    <div class="col-md-12">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&laquo;</a></li>
+            {% endif %}
+
+            {% for page in paginator.page_range %}
+                <li class="{% if page == page_obj.number %}active{% endif %}"><a href="?page={{page}}">{{ page }}</a></li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

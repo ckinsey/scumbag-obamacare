@@ -1,0 +1,48 @@
+{% load url from future %}
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <div class="pull-left">
+            <form action="{% url 'quote-upvote' quote.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="upvote" value="1">
+                <button type="submit" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+            </form>
+        </div>
+        <div class="pull-left" style="padding: 2px 7px;"><strong>{{ quote.ranking }}</strong></div>
+        <div class="pull-left">
+            <form action="{% url 'quote-downvote' quote.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="downvote" value="1">
+                <button type="submit" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+            </form>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <p class="lead">Obamacare <a href="{{ quote.get_absolute_url }}">{{ quote.body }}</a></p>
+        <p class="small">Submitted by: {{ quote.name }}</p>
+    </div>
+
+    {% if detail == 1 %}
+        <div class="panel-footer">
+
+            <div class="col-md-4">
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                </div>
+                <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ef03e60262dca9"></script>
+                <!-- AddThis Button END -->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    {% endif %}
+
+</div>
