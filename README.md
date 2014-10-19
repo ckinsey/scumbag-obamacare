@@ -1,4 +1,4 @@
 scumbag-obamacare
 =================
 
-[scumbag-obamacare.herokuapp.com](http://scumbag-obamacare.herokuapp.com)
+[obamacare.pythonanywhere.com](http://obamacare.pythonanywhere.com)
